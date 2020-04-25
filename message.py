@@ -45,7 +45,6 @@ while True:
             # пусть пока будет так но потом нужно будет это норм сделать
             # может быть стоит это потом вынести в отдельную фу-цию
 
-
             if event.text.lower() == 'расписание':  # Нижний регистр.
                 vk.messages.send(
                     user_id=event.user_id,
@@ -84,7 +83,7 @@ while True:
 
                 vk.messages.send(
                     user_id=event.user_id,
-                    message=open_read_file("students_numbers"),  # Вывод сообщения о входе в режим голосования.
+                    message="Введите номер студента \n" + open_read_file("students_numbers"),  # Вывод сообщения о входе в режим голосования.
                     keyboard=open("glossing_keyboard.json", "r", encoding="UTF-8").read(),
                     # Вызываем главиатуру голосования.
                     random_id=random_id()

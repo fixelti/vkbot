@@ -24,3 +24,7 @@ def Week(fuck):
             # num = 2
 
     return wik
+
+
+if 3 > 5 :
+    print("xer")
