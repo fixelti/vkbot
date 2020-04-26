@@ -84,7 +84,7 @@ while True:
 
                 vk.messages.send(
                     user_id=event.user_id,
-                    message="Сначала выбери порядковый номер человека , затем напиши ему свою оценку   " + "\n " +  open_read_file("students_numbers"),  # Вывод сообщения о входе в режим голосования.
+                    message=open_read_file("students_numbers"),  # Вывод сообщения о входе в режим голосования.
                     keyboard=open("glossing_keyboard.json", "r", encoding="UTF-8").read(),
                     # Вызываем главиатуру голосования.
                     random_id=random_id()
