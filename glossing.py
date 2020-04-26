@@ -46,8 +46,8 @@ def glossing(vk_session, fuck):
                     # Получаем от пользователя номер студента и его оценку
                     try:
                         number = int(number)
-                    except UnboundLocalError  :
-                        return  "Уверен, в следующий раз у тебя получится написать целую цифрику "
+                    except UnboundLocalError:
+                        return "Уверен, в следующий раз у тебя получится написать целую цифрику "
                     number = event.text.lower()  # Номер студента
                     for events in longpoll.listen():
                         if events.type == VkEventType.MESSAGE_NEW and event.to_me:
