@@ -24,7 +24,7 @@ def glossing(vk_session, fuck):
                         user_id=event.user_id,  # Для выбора другой операци
                         message="Не стоило тебе сюда заходить",
                         keyboard=open("keyboard.json", "r", encoding="UTF-8").read(),
-                        random_id=random_id()
+                        random_id=random_id( )
                     )
                     s = False
                     return "*боевая музыка из скайрима"
