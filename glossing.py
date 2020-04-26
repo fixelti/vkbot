@@ -43,6 +43,14 @@ def glossing(vk_session, fuck):
 
 
                 else:
+
+
+
+
+"""adddddddddddddddddddddddddddddd
+"""
+
+
                     # Получаем от пользователя номер студента и его оценку
                     try:
                         number = int(number)
