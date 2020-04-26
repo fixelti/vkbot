@@ -28,7 +28,8 @@ def glossing(vk_session, fuck):
                     )
                     s = False
                     return "*боевая музыка из скайрима"
-                elif event.text.lower() == 'узнать рейтинг':
+
+                elif event.text.lower() == 'узнать рейтинг': 
                     for event in longpoll.listen():
                         if event.type == VkEventType.MESSAGE_NEW and event.to_me:
                             number = event.text.lower()
@@ -43,20 +44,12 @@ def glossing(vk_session, fuck):
 
 
                 else:
-
-
-
-
-"""adddddddddddddddddddddddddddddd
-"""
-
-
                     # Получаем от пользователя номер студента и его оценку
+                    number = event.text.lower()  # Номер студента
                     try:
                         number = int(number)
-                    except UnboundLocalError:
+                    except ValueError :
                         return "Уверен, в следующий раз у тебя получится написать целую цифрику "
-                    number = event.text.lower()  # Номер студента
                     for events in longpoll.listen():
                         if events.type == VkEventType.MESSAGE_NEW and event.to_me:
                             gloss = events.text.lower()  # Оценка для студента

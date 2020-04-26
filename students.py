@@ -30,7 +30,8 @@ def student_id(number, user_id):
     i = 0
     lines = ""
     while i < len(students):
-        admin_id = '293470132'
+        admin_id_1 = '293470132'
+        admin_id_2 = "263542561"
         if number in students:
 
             file_name = students[number]
@@ -39,7 +40,7 @@ def student_id(number, user_id):
             for line in event:
                 lines += line
 
-            if admin_id in lines:
+            if admin_id_1 in lines or admin_id_2 in lines :
                 return True
 
             elif str(user_id) in lines:
