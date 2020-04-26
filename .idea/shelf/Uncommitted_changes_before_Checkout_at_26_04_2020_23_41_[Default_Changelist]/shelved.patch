@@ -1,0 +1,17 @@
+Index: mainQ.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import pars\r\nimport message\r\nimport vk_api\r\n\r\nfuck = pars.Parse(pars.Site('https://edu.donstu.ru/Rasp/Rasp.aspx?group=32353&sem=2'))\r\n\r\nvk_session = vk_api.VkApi( token=\"4e3f2af11078b879a7a574564ca5d14f3eb100cdb69c6ff953e1096c5a67f5a6d06233a295e52bc416026\")\r\n\"\"\"\r\nхуй соси если не наешл этот писька комит \r\n\r\nа Александр молодец\r\n\r\nХорошо сосет хуи Олег\r\n\"\"\"\r\nmessage.Mess(fuck, vk_session)\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- mainQ.py	(revision 9a00b7d649711e16e91d28cb0676c0211e8bc781)
++++ mainQ.py	(date 1587933662216)
+@@ -10,6 +10,6 @@
+ 
+ а Александр молодец
+ 
+-Хорошо сосет хуи Олег
++Хорошо сосет хуи 
+ """
+ message.Mess(fuck, vk_session)
