@@ -8,6 +8,8 @@ vk_session = vk_api.VkApi( token="4e3f2af11078b879a7a574564ca5d14f3eb100cdb69c6f
 """
 хуй соси если не наешл этот писька комит 
 
-а Александр молодец 
+а Александр молодец
+
+Хорошо сосет хуи 
 """
 message.Mess(fuck, vk_session)
