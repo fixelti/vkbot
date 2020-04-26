@@ -10,6 +10,11 @@ vk_session = vk_api.VkApi( token="4e3f2af11078b879a7a574564ca5d14f3eb100cdb69c6f
 
 а Александр молодец
 
+<<<<<<< HEAD
 Хорошо сосет хуи Олег
+=======
+Хорошо сосет хуи 
+Саня парсер верни
+>>>>>>> 98a0a3dc7ed0a91ba3e0de629ed8eb52ea532777
 """
 message.Mess(fuck, vk_session)
