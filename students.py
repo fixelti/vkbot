@@ -60,7 +60,7 @@ def student_id(number, user_id):
 def student_info(number, gloss, user_id):
     i = 1
     while i < 25:
-        if (number in students) and ((float(gloss) >= 1) and (float(gloss) <= 5)):  # Проверка на вход в диапазон оценок
+        if (number in students) and (float(gloss) >= 1) and (float(gloss) <= 5):  # Проверка на вход в диапазон оценок
             if student_id(number, user_id):
                 rating = students[number]
                 rating[1] += float(gloss)
@@ -75,20 +75,36 @@ def student_info(number, gloss, user_id):
 
 def ratingg(number , user_id):
     i = 1
-    
-    while i <= len(students) : 
-        peremenay = str(students[ str(i) ])
-        peremenay1 = peremenay[peremenay.rfind(',') + 2:len (peremenay) - 1]
-        print('permenay = '+ peremenay)
-        if str(user_id) == peremenay1 : 
-                peremenay2 = peremenay[peremenay.find(',') + 1:] 
-                peremenay2 = peremenay2[:peremenay2.find(',') ]
-                print("")
-                return peremenay2
-               
+
+    while i <= len(students):
         i += 1
-    if i > len(students) : 
-        return "Нема тебя в списках, чувачок..."
+        if number in students:
+            rating_student = students[number]
+            sredniy_rating = rating_student[1] / rating_student[3]
+            return sredniy_rating
+        else:
+            return "Error"
+
+
+
+
+
+#    while i <= len(students) :
+        # peremenay = str(students[ str(i) ])
+        # peremenay1 = peremenay[peremenay.rfind(',') + 2:len (peremenay) - 1]
+        # print('permenay = '+ peremenay)
+        # if str(user_id) == peremenay1 :
+        #         peremenay2 = peremenay[peremenay.find(',') + 1:]
+        #         peremenay2 = peremenay2[:peremenay2.find(',') ]
+        #         print("")
+        #         return peremenay2
+
+
+               
+
+
+    # if i > len(students) :
+    #     return "Нема тебя в списках, чувачок..."
     # while i <= len(students):
     #     i += 1
     #     if user_id in students:

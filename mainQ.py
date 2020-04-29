@@ -1,3 +1,6 @@
+# Version 1.0
+# By Fixel
+
 import pars
 import message
 import vk_api
