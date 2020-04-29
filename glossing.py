@@ -39,11 +39,12 @@ def glossing(vk_session, fuck):
                                 keyboard=open("keyboard.json", "r", encoding="UTF-8").read(),
                                 random_id=random_id()
                             )
-                            return students.ratingg(number)
+                            return students.ratingg(number, event.user_id)
 
 
 
                 else:
+                    
                     # Получаем от пользователя номер студента и его оценку
                     number = event.text.lower()  # Номер студента
                     try:
