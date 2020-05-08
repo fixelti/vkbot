@@ -36,6 +36,13 @@
         "label": "голосование"
       },
       "color": "positive"
+    }],
+    [{
+      "action": {
+        "type": "text",
+        "label": "рассылка"
+      },
+      "color": "positive"
     }]
   ]
 }

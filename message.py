@@ -4,6 +4,7 @@ import week
 import pars
 import vk_api
 import glossing
+import mailing
 
 fuck = pars.Parse(pars.Site('https://edu.donstu.ru/Rasp/Rasp.aspx?group=32353&sem=2'))
 vk_session = vk_api.VkApi(token="4e3f2af11078b879a7a574564ca5d14f3eb100cdb69c6ff953e1096c5a67f5a6d06233a295e52bc416026")
@@ -45,7 +46,6 @@ while True:
             # пусть пока будет так но потом нужно будет это норм сделать
             # может быть стоит это потом вынести в отдельную фу-цию
 
-
             if event.text.lower() == 'расписание':  # Нижний регистр.
                 vk.messages.send(
                     user_id=event.user_id,
@@ -84,7 +84,8 @@ while True:
 
                 vk.messages.send(
                     user_id=event.user_id,
-                    message="Введи превым целым числом номер нужного студента "+"\n"+ "следующее число - оценка , котору ты бы ему хотел поставить ( от 1 до 5) " +'\n' +open_read_file("students_numbers"),  # Вывод сообщения о входе в режим голосования.
+                    message="Введи превым целым числом номер нужного студента " + "\n" + "следующее число - оценка , котору ты бы ему хотел поставить ( от 1 до 5) " + '\n' + open_read_file(
+                        "students_numbers"),  # Вывод сообщения о входе в режим голосования.
                     keyboard=open("glossing_keyboard.json", "r", encoding="UTF-8").read(),
                     # Вызываем главиатуру голосования.
                     random_id=random_id()
@@ -96,7 +97,15 @@ while True:
                     random_id=random_id()
                 )
                 k = 3
+            elif event.text.lower() == "рассылка":
 
+                vk.messages.send(
+                    user_id=event.user_id,
+                    message="вставайте, зови мужиком, работаем" + mailing.mailing(vk_session),
+                    keyboard=open("glossing_keyboard.json", "r", encoding="UTF-8").read(),
+                    random_id=random_id()
+                )
+                k = 3
             else:
                 if k != 3:
                     if i < 4:
@@ -114,4 +123,4 @@ while True:
                             keyboard=open("keyboard.json", "r", encoding="UTF-8").read(),
                             random_id=random_id()
                         )
-    print ("айди юзера равен = "+ str (event.user_id) ) 
+    print("айди юзера равен = " + str(event.user_id))
