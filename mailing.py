@@ -25,18 +25,19 @@ def mailing(vk_session):
         for event in longpoll.listen():
             if event.type == VkEventType.MESSAGE_NEW and event.to_me:
                 message_for_mailing = event.text.lower()
-                i = ""
+                b = 0
                 a = ""
                 for i in open_file_user_id():
 
-                    if len(a) < 9:
+                    if b < 9:
                         a += i
-                        print(int(a))
-                    else:
+                        b += 1
+                    elif b == 9:
+                        b = 0
                         vk.messages.send(
                             user_id=int(a),
-                            message="кек",
+                            message=message_for_mailing,
                             keyboard=open("keyboard.json", "r", encoding="UTF-8").read(),
                             random_id=random_id()
                         )
-                    a = ""
+                        a = ""
