@@ -1,36 +1,10 @@
-class geys():
+class Students(object):
 
-    def __index__(self, students):
-        self.students
-
-    # Создаем список студентов и их рейтинга
-    students = dict()
-    # битва бомжей
-    # 1 фамилия 2 рейтин 3 комент 4 средний рейтинг 5 айди
-    students['1'] = ['Агаркова', 0, " ", 0, 310410918]
-    students['2'] = ['Ажинов', 0, " ", 0, 263542561]
-    students['3'] = ['Акимов', 0, " ", 0, 262668821]
-    students['4'] = ['Алиев', 0, " ", 0, 469677495]
-    students['5'] = ['Антонян', 0, " ", 0, 556745169]
-    students['6'] = ['Барабанов', 0, " ", 0, 198092718]
-    students['7'] = ['Грибенников', 0, " ", 0, 214078701]
-    students['8'] = ['Дворниченко', 0, " ", 0, 296469265]
-    students['9'] = ['Джамалдинов', 0, " ", 0, 487620053]
-    students['10'] = ['Добряков', 0, " ", 0, 510998697]
-    students['11'] = ['Замореев', 0, " ", 0, 293470132]
-    students['12'] = ['Коваленко', 0, " ", 0, 137283601]
-    students['13'] = ['Коренев', 0, " ", 0, 556295439]
-    students['14'] = ['Кривчиков', 0, " ", 0, 191420134]
-    students['15'] = ['Кузьминых', 0, " ", 0, 318022133]
-    students['16'] = ['Леонов', 0, " ", 0, 212162053]
-    students['17'] = ['Линник', 0, " ", 0, 221579176]
-    students['18'] = ['Маховиков', 0, " ", 0, 206261124]
-    students['19'] = ['Михайлова', 0, " ", 0, 147082979]
-    students['20'] = ['Нестеренко', 0, " ", 0, 226066141]
-    students['21'] = ['Пасынков', 0, " ", 0, 281531128]
-    students['22'] = ['Руппель', 0, " ", 0, 306096404]
-    students['23'] = ['Сафронов', 0, " ", 0, 226905627]
-    students['24'] = ['Чувак', 0, " ", 0, 000000000]
+    def __init__(self, number, gloss, user_id, students):
+        self.number = number
+        self.gloss = gloss
+        self.user_id = user_id
+        self.students = students
 
     def student_id(self, number, user_id):
         i = 0
@@ -61,17 +35,22 @@ class geys():
                     return True
 
     # отвечает на ввод числа (норм это число или не проходит по критериям)
-    def student_info(self, number, gloss, user_id):
+    def student_info(self):
+
+        print("Второй пол лихачей прогирал игривым собакам верховного клыка и кости")
         i = 1
         while i < 25:
-            if (number in students) and (float(gloss) >= 1) and (
-                    float(gloss) <= 5):  # Проверка на вход в диапазон оценок
-                if student_id(number, user_id):
-                    rating = students[number]
-                    rating[1] += float(gloss)
+            print("Работяги пытаются работать")
+            if (self.number in self.students) and (float(self.gloss) >= 1) and (
+                    float(self.gloss) <= 5):  # Проверка на вход в диапазон оценок
+                if self.student_id(self.number, self.user_id):
+                    rating = self.students[self.number]
+                    rating[1] += float(self.gloss)
                     rating[3] += 1
-                    return students[number]
                     i += 1
+                    print("Е")
+                    return self.students[self.number]
+
                 else:
                     return "Ты борзый самый?"
             else:
