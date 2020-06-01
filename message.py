@@ -4,10 +4,10 @@ import week
 import pars
 import vk_api
 import mailing
-import students
+import SQLACCESS
 
 
-class Message():
+class Message(object):
 
     def __init__(self):
         self.fuck = pars.Parse(pars.Site('https://edu.donstu.ru/Rasp/Rasp.aspx?group=32353&sem=2'))
@@ -16,50 +16,67 @@ class Message():
         self.longpoll = VkLongPoll(self.vk_session)
         self.vk = self.vk_session.get_api()
 
+
+    # Функция для передачи случайного числа.
     def random_id(self):
         self.randoms = 0
         self.randoms += random.randint(0, 1000000000000)
         return self.randoms
 
-    def glossing(self):
-        # Создаем список студентов и их рейтинга
+
+
+    def glossing_throwing(self):
+        # Принимаем ввод пользователя и по вводу переправляем к определенному методу.
         s = True
         while s:
             for event in self.longpoll.listen():
                 if event.type == VkEventType.MESSAGE_NEW and event.to_me:
-                    if event.text.lower() == 'назад':  # Если пользователь вводит это значение, то
-                        self.vk.messages.send(  # Его выкидывают в начальные кнопки
-                            user_id=event.user_id,  # Для выбора другой операци
-                            message="Не стоило тебе сюда заходить",
-                            keyboard=open("keyboard.json", "r", encoding="UTF-8").read(),
+                    try:
+                        if event.text.lower() == 'назад':  # Если пользователь вводит это значение, то
+                            self.vk.messages.send(  # Его выкидывают в начальные кнопки
+                                user_id=event.user_id,  # Для выбора другой операци
+                                message="Не стоило тебе сюда заходить",
+                                keyboard=open("keyboard.json", "r", encoding="UTF-8").read(),
+                                random_id=self.random_id()
+                            )
+                            s = False
+                            return "*боевая музыка из скайрима"
+                        elif event.text.lower() == 'узнать рейтинг':
+                            for event in self.longpoll.listen():
+                                if event.type == VkEventType.MESSAGE_NEW and event.to_me:
+                                    name_students = event.text
+                                    self.vk.messages.send(
+                                        user_id=event.user_id,
+                                        message="Получи",
+                                        keyboard=open("keyboard.json", "r", encoding="UTF-8").read(),
+                                        random_id=self.random_id()
+                                    )
+                                    a = SQLACCESS.Sqlaccess(name_students, 0, event.user_id)
+                                    return a.sredreit()
+                        else:
+                            name_students = event.text.lower()
+                            for events in self.longpoll.listen():
+                                if events.type == VkEventType.MESSAGE_NEW and event.to_me:
+                                    gloss = events.text.lower()  # Оценка для студента
+                                    if ( float(gloss) >= 1 ) and ( float(gloss) <= 5 ):
+                                        a = SQLACCESS.Sqlaccess(name_students, gloss, events.user_id)
+                                        return a.glossing() # Возвращаем значение из функции
+                                    else:
+                                        return "Оценка низкая или высокая"
+                    except UnboundLocalError:
+                        self.vk.messages.send(
+                            user_id=event.user_id,
+                            message="Такого пользователя не существует. Проверти правильность написания или обратитесь в тех. поддержку",
                             random_id=self.random_id()
                         )
-                        s = False
-                        return "*боевая музыка из скайрима"
 
-                    elif event.text.lower() == 'узнать рейтинг':
-                        for event in self.longpoll.listen():
-                            if event.type == VkEventType.MESSAGE_NEW and event.to_me:
-                                number = event.text.lower()
-                                self.vk.messages.send(  # Его выкидывают в начальные кнопки
-                                    user_id=event.user_id,  # Для выбора другой операци
-                                    message="Получи",
-                                    keyboard=open("keyboard.json", "r", encoding="UTF-8").read(),
-                                    random_id=self.random_id()
-                                )
-                                s = students.Students(number, 0, event.user_id)
-                                return s.ratingg()
-
-
-
-                    else:
-                        number = event.text.lower()
-                        for events in self.longpoll.listen():
-                            if events.type == VkEventType.MESSAGE_NEW and event.to_me:
-                                gloss = events.text.lower()  # Оценка для студента
-                                s = students.Students(number, gloss, event.user_id)
-                                s.student_info()
-                                return s.student_info()  # Возвращаем значение из функции
+                    except ValueError:
+                        print("Твоя оценка подозрительная. Может это буква, А НЕ ЧИСЛО?")
+                        self.vk.messages.send(
+                            user_id=event.user_id,
+                            message="Твоя оценка подозрительная. Может это буква, А НЕ ЧИСЛО?",
+                            random_id=self.random_id()
+                        )
 
     # Функция, чтобы можно было отправлять сообщение одно и тому же
     def open_read_file(self, namefile):
@@ -133,7 +150,7 @@ class Message():
                         )
                         self.vk.messages.send(
                             user_id=event.user_id,
-                            message=self.glossing(),
+                            message=self.glossing_throwing(),
                             # Вызываем метод "голосование"
                             keyboard=open("keyboard.json", "r", encoding="UTF-8").read(),
                             random_id=self.random_id()
