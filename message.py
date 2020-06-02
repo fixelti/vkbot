@@ -26,7 +26,7 @@ class Message(object):
 
 
     def glossing_throwing(self):
-        # Принимаем ввод пользователя и по вводу переправляем к определенному методу.
+        # Принимаем ввод пользователя и по переправляем к определенному методу.
         s = True
         while s:
             for event in self.longpoll.listen():
@@ -54,22 +54,23 @@ class Message(object):
                                     a = SQLACCESS.Sqlaccess(name_students, 0, event.user_id)
                                     return a.sredreit()
                         else:
-                            name_students = event.text.lower()
+                            name_students = event.text.lower() # Фамилия студнета
                             for events in self.longpoll.listen():
                                 if events.type == VkEventType.MESSAGE_NEW and event.to_me:
                                     gloss = events.text.lower()  # Оценка для студента
                                     if ( float(gloss) >= 1 ) and ( float(gloss) <= 5 ):
-                                        a = SQLACCESS.Sqlaccess(name_students, gloss, events.user_id)
-                                        return a.glossing() # Возвращаем значение из функции
+                                        a = SQLACCESS.Sqlaccess(name_students, gloss, events.user_id) # Получаем экземпляр класса
+                                        return a.glossing() # Возвращаем значение из функции(Вызывая метод из экземпляра класса)
                                     else:
                                         return "Оценка низкая или высокая"
+                    # Проверка на не существуемость пользователя.
                     except UnboundLocalError:
                         self.vk.messages.send(
                             user_id=event.user_id,
                             message="Такого пользователя не существует. Проверти правильность написания или обратитесь в тех. поддержку",
                             random_id=self.random_id()
                         )
-
+                    # Проверка на правильность ввода оценки(должны быть тольцо цифры)
                     except ValueError:
                         print("Твоя оценка подозрительная. Может это буква, А НЕ ЧИСЛО?")
                         self.vk.messages.send(
@@ -78,7 +79,7 @@ class Message(object):
                             random_id=self.random_id()
                         )
 
-    # Функция, чтобы можно было отправлять сообщение одно и тому же
+    # Функция открытия и чтения одного из двух файлом.
     def open_read_file(self, namefile):
         if namefile in "events.txt":
             event = open("events.txt", encoding='utf8')
@@ -94,17 +95,15 @@ class Message(object):
                 linet += line
             return linet
 
+    # Основная функция. По пользовательскому вводу переводит его в другие методы программы.
     def mess(self):
         while True:
             otvet1 = ['Тыкай по кнопочкам', 'Сейчас разозлюсь']
             otvet2 = ['Че?', 'А?']
-            i = 0
-            k = 1
+            i = 0 # Создаем данную переменную, чтобы выводить случайный доп.ответ.
+            k = 1 # Создаем данную переменную, чтобы не выводились доп.ответы, когда они не нужны(Костыль!)
             for event in self.longpoll.listen():
                 if event.type == VkEventType.MESSAGE_NEW and event.to_me:
-                    # пусть пока будет так но потом нужно будет это норм сделать
-                    # может быть стоит это потом вынести в отдельную фу-цию
-
                     if event.text.lower() == 'расписание':  # Нижний регистр.
                         self.vk.messages.send(
                             user_id=event.user_id,

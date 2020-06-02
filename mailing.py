@@ -3,6 +3,7 @@ from vk_api.longpoll import VkEventType, VkLongPoll
 import random
 
 
+# Метод для открытия файлов(уже 3(((((  ) открывает файл с id пользователей
 def open_file_user_id():
     users_id = open("users_id.txt", encoding='utf8')
     lines = ""
@@ -19,36 +20,50 @@ class Mailing(object):
         self.longpoll = VkLongPoll(self.vk_session)
         self.vk = self.vk_session.get_api()
 
+    # Метод для определения рандомного числа
     def random_id(self):
         Random = 0
         Random += random.randint(0, 1000000000000)
         return Random
 
-    def mailing(self):  # доработать
+    def mailing(self):
+
         longpoll = VkLongPoll(self.vk_session)  # подключение к боту
 
         while True:
             for event in longpoll.listen():
                 if event.type == VkEventType.MESSAGE_NEW and event.to_me:
                     message_for_mailing = event.text.lower()
-                    b = 0
-                    a = ""
+                    count_id = 0 # Кол-во цифр в одном id.(9)
+                    number_id = "" # само id
+
+                    """
+                    number_id снячалов принимает числа в формате String.
+                    number_id = '2'
+                    number_id = '6'
+                    ...
+                    number_id = '1'
+                    
+                    После чего преобразует все в значение Integer. Возможно стоит поставить другой тип.
+                    Т.к некоторые id могут выходить за пределы значений Integer.
+                    """
+
+                    # Проверка на id. Рассылку сможет отправить толь тот, у кого такое id
                     if event.user_id == 263542561:
                         for i in open_file_user_id():
-                            print(i)
-                            if b < 9:
-                                a += i
-                                b += 1
-                            elif b == 9:
-                                b = 0
+                            if count_id < 9:
+                                number_id += i
+                                count_id += 1
+                            elif count_id == 9:
+                                count_id = 0
                                 print(i)
                                 self.vk.messages.send(
-                                    user_id=int(a),
+                                    user_id=int(number_id),
                                     message=message_for_mailing,
                                     keyboard=open("keyboard.json", "r", encoding="UTF-8").read(),
                                     random_id=self.random_id()
                                 )
-                                a = ""
+                                number_id = ""
                         return "Выполнено"
                     else:
                         self.vk.messages.send(
