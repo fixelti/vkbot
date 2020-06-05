@@ -5,9 +5,10 @@ import pars
 import vk_api
 import mailing
 import students
+import SQLACCESS
 
 
-class Message():
+class Message(object):
 
     def __init__(self):
         self.fuck = pars.Parse(pars.Site('https://edu.donstu.ru/Rasp/Rasp.aspx?group=32353&sem=2'))
@@ -40,15 +41,15 @@ class Message():
                     elif event.text.lower() == 'узнать рейтинг':
                         for event in self.longpoll.listen():
                             if event.type == VkEventType.MESSAGE_NEW and event.to_me:
-                                number = event.text.lower()
+                                number = event.text
                                 self.vk.messages.send(  # Его выкидывают в начальные кнопки
                                     user_id=event.user_id,  # Для выбора другой операци
                                     message="Получи",
                                     keyboard=open("keyboard.json", "r", encoding="UTF-8").read(),
                                     random_id=self.random_id()
                                 )
-                                s = students.Students(number, 0, event.user_id)
-                                return s.ratingg()
+                                d = 1
+                                return SQLACCESS.sredreit(number, d, events.user_id)
 
 
 
@@ -57,9 +58,13 @@ class Message():
                         for events in self.longpoll.listen():
                             if events.type == VkEventType.MESSAGE_NEW and event.to_me:
                                 gloss = events.text.lower()  # Оценка для студента
-                                s = students.Students(number, gloss, event.user_id)
-                                s.student_info()
-                                return s.student_info()  # Возвращаем значение из функции
+                                if ( float(gloss) >= 1 ) and ( float(gloss) <= 5 ):
+                                    print("1 Этап работает")
+                                    a = SQLACCESS.Sqlaccess
+                                    return s.gloss(number, gloss, events.user_id) # Возвращаем значение из функции
+
+                                else:
+                                    return "Оценка низкая или высокая"
 
     # Функция, чтобы можно было отправлять сообщение одно и тому же
     def open_read_file(self, namefile):

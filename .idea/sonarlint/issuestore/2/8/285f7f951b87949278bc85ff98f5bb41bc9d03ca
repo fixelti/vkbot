@@ -1,0 +1,6 @@
+
+Upython:S1751b"1Refactor this loop to do more than one iteration.(’ïùÿÿÿÿ8õíá¤.
+fpython:S1763q"GDelete this unreachable code or refactor the code to make it reachable.(ìØ™ 8íïÏ«¥.
+=python:S125,"Remove this commented out code.(İª°Ã8ÏÉ§Ş¤.
+jpython:S3827g"Fopen_file is not defined. Change its name or define it before using it(òß×Ôıÿÿÿÿ8Ïø‰º¥.
+hpython:S9305"EAdd 1 missing arguments; 'stydent_id' expects 2 positional arguments.(ã¡”¬şÿÿÿÿ8ü³ñ»¥.
