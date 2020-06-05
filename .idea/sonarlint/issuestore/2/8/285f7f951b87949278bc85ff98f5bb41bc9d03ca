@@ -1,6 +1,14 @@
 
+<<<<<<< HEAD
 Upython:S1751b"1Refactor this loop to do more than one iteration.(’žïùÿÿÿÿ8õíá¤.
 fpython:S1763q"GDelete this unreachable code or refactor the code to make it reachable.(ìØ™ 8íïÏ«¥.
 =python:S125,"Remove this commented out code.(Ýª°Ã8ÏÉ§Þ¤.
 jpython:S3827g"Fopen_file is not defined. Change its name or define it before using it(òß×Ôýÿÿÿÿ8Ïø‰º¥.
 hpython:S9305"EAdd 1 missing arguments; 'stydent_id' expects 2 positional arguments.(ã¡”¬þÿÿÿÿ8ü³ñ»¥.
+=======
+gpython:S3827g"Cnumber is not defined. Change its name or define it before using it(òß×Ôýÿÿÿÿ8†ï²ÿ¦.
+fpython:S1763q"GDelete this unreachable code or refactor the code to make it reachable.(ìØ™ 8íïÏ«¥.
+=python:S125,"Remove this commented out code.(Ýª°Ã8ÏÉ§Þ¤.
+jpython:S3827g"Fopen_file is not defined. Change its name or define it before using it(òß×Ôýÿÿÿÿ8Ïø‰º¥.
+Upython:S1751b"1Refactor this loop to do more than one iteration.(’žïùÿÿÿÿ8õíá¤.
+>>>>>>> e999d5373e65547230a447a523259e1b6c3b1fb5

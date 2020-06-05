@@ -30,4 +30,24 @@ D
 <
 SQLACCESS.py,2\8\285f7f951b87949278bc85ff98f5bb41bc9d03ca
 D
+<<<<<<< HEAD
 замореев.txt,5\4\540927ecf8cb383c509cd9edee361989d6670c9a
+=======
+замореев.txt,5\4\540927ecf8cb383c509cd9edee361989d6670c9a
+O
+student_id/агаркова.txt,5\2\52d71d075688f8bfcbd3b99ef8591417dd96e49d
+K
+student_id/ажинов.txt,4\c\4c4f0a6e4416bd5ec28243eafa087717e0187dee
+K
+student_id/акимов.txt,a\b\ab752ca3fc20ce89c0cb07b54ec89d89bc725be3
+I
+student_id/алиев.txt,7\d\7d2516bf0c718abe4b28398e37e4c9859cf2575c
+M
+student_id/антонян.txt,0\4\04939e468ff93ef56adcbb61919679278808431d
+Q
+!student_id/барабанов.txt,d\1\d142332fd6a55f4bb3328a2c232332479e3e56bd
+U
+%student_id/грибенников.txt,1\5\158afc0d6ba3fedf047f99ad60d51462c3679d7f
+D
+агаркова.txt,7\d\7d7e7b5fd326acd7f769f0e3c2b6ebe5c4c0e29d
+>>>>>>> e999d5373e65547230a447a523259e1b6c3b1fb5
